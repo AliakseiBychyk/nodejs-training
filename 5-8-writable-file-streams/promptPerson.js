@@ -12,9 +12,6 @@ rl.question("What is the name of a real person? ", function (answer) {
 
   realPerson.name = answer;
 
-  //
-  //  TODO: Use a Writable Stream
-  //
   const stream = fs.createWriteStream(realPerson.name + '.md')
   stream.write(`${realPerson.name}\n=========================\n\n`)
 
