@@ -1,3 +1,6 @@
+/* jshint esnext: true */
+/* jshint asi: true */
+
 const http = require('http')
 const fs = require('fs')
 
