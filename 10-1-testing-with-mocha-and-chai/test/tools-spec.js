@@ -1,5 +1,6 @@
 const { expect } = require('chai')
 const tools = require('../lib/tools')
+const nock = require('nock')
 
 describe('Tools', () => {
   
@@ -11,14 +12,17 @@ describe('Tools', () => {
     })
   })
 
-  describe('loadWiki()', function () {
-    
-    // arrow function won't access the Mocha context 'this'
-    this.timeout(5000)
+  describe('loadWiki()', () => {
+
+    before(() => {
+      nock('https://en.wikipedia.org')
+        .get('/wiki/Abraham_Lincoln')
+        .reply(200, 'Mock Abraham Lincoln Page')
+    })
     
     it('Load Abraham Lincoln wikipedia page', (done) => {
       tools.loadWiki({ first: 'Abraham', last: 'Lincoln' }, html => {
-        expect(html).to.be.ok
+        expect(html).to.equal('Mock Abraham Lincoln Page')
         done()
       })
     })
