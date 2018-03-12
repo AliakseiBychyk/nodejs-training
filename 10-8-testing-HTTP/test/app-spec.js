@@ -1,12 +1,18 @@
 const request = require('supertest')
 const { expect } = require('chai');
+const cheerio = require('cheerio')
 const rewire = require('rewire');
 const app = rewire('../app');
 
 describe("Dictionary App", function () {
 
     it("Loads the home page", function (done) {
-        request(app).get('/').expect(200).end(done)
+        request(app).get('/').expect(200).end((err, res) => {
+            const $ = cheerio.load(res.text)
+            const pageHeading = $('body>h1:first-child').text()
+            expect(pageHeading).to.equal('Skier Dictionary')
+            done()
+        })
     });
 
     describe("Dictionary API", function () {
@@ -31,7 +37,11 @@ describe("Dictionary App", function () {
             request(app)
                 .get('/dictionary-api')
                 .expect(200)
-                .end(done)
+                .end((err, res) => {
+                    const terms = JSON.parse(res.text)
+                    expect(terms).to.deep.equal(this.defs)
+                    done()
+                })
         });
 
         it("POSTS dictionary-api", function (done) {
