@@ -15,7 +15,8 @@
     "Cheerio"
   ],
   "devDependencies": {
+    "chai": "^3.5.0",
     "nock": "^9.2.3",
-    "chai": "^3.5.0"
+    "rewire": "^3.0.2"
   }
 }
