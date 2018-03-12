@@ -4,6 +4,10 @@
   "description": "Learn to write Unit Tests with Mocha Chai",
   "author": "Alex Banks",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --require babel-core/register"
+  },
   "keywords": [
     "Unit",
     "Testing",
@@ -15,7 +19,10 @@
     "Cheerio"
   ],
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "chai": "^3.5.0",
+    "istanbul": "1.0.0-alpha.2",
+    "mocha": "^5.0.4",
     "nock": "^9.2.3",
     "rewire": "^3.0.2",
     "sinon": "^4.4.3"

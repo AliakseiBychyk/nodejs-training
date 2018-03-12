@@ -25,6 +25,11 @@ describe('Ordering Items', () => {
     order.__set__('warehouse', this.warehouse)
   })
 
+  it('logs "item not found"', function () {
+    order.orderItem('ZZZ', 10)
+    expect(this.console.log.calledWith('Item - ZZZ not found')).to.equal(true)
+  })
+
   it('order an item there are enough in stock', function(done) {
     // arrow function won't access to the Mocha this context
     order.orderItem('CCC', 3, () => {    
@@ -43,7 +48,7 @@ describe('Ordering Items', () => {
     it('receives a tracking number', function () {
       expect(this.callback.calledWith(10987654321)).to.equal(true)
     })
-    
+
     it('calls packageAndShip with the correct sku and quantity', function () {
       expect(this.warehouse.packageAndShip.calledWith('CCC', 2)).to.equal(true)
     })
