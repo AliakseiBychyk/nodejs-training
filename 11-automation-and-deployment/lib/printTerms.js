@@ -1,4 +1,4 @@
-var $ = require('jquery');
+const $ = require('jquery');
 
 module.exports = function printTerms(terms) {
     $('body>dl').empty();

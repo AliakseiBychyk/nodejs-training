@@ -1,5 +1,5 @@
-var $ = require('jquery');
-var printTerms = require('./lib/printTerms');
+const $ = require('jquery');
+const printTerms = require('./lib/printTerms');
 
 $(document).ready(function () {
 
