@@ -10,7 +10,7 @@ let questions = [
 let answers = []
 
 const ask = i => {
-  process.stdout.write(`\n\ ${questions[i]}`)
+  process.stdout.write(`\n\n ${questions[i]}`)
   process.stdout.write(' > ')
 }
 
